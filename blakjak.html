@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BlakJak | The Darker, Richer Wojak</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="BlakJak - the darker, richer, unbothered cousin of Wojak. A meme coin for those who play the game and win." />
+  <style>
+    :root {
+      --bg-dark: #050509;
+      --bg-card: #0d0d16;
+      --accent-gold: #f4c95d;
+      --accent-red: #ff476f;
+      --accent-green: #1ed760;
+      --accent-purple: #7b5cff;
+      --text-main: #f7f7ff;
+      --text-muted: #9b9bb5;
+      --border-soft: rgba(255,255,255,0.08);
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.65);
+      --radius-lg: 18px;
+      --radius-full: 999px;
+      --transition-fast: 0.18s ease-out;
+      --max-width: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #1a1524 0, #050509 45%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 64px;
+      line-height: 1.5;
+    }
+
+    .site-frame {
+      width: 100%;
+      max-width: var(--max-width);
+      background: radial-gradient(circle at top left, rgba(244,201,93,0.06), rgba(5,5,9,0.98));
+      border-radius: 32px;
+      border: 1px solid rgba(244,201,93,0.15);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-frame::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(244,201,93,0.14), transparent 60%),
+        radial-gradient(circle at 85% -10%, rgba(123,92,255,0.18), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .site-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-pill {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-full);
+      background: radial-gradient(circle at 30% 0, #f4c95d, #1a1a25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(244,201,93,0.5);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.8);
+      overflow: hidden;
+    }
+
+    .logo-face {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 0, #2a1f39, #050509);
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .logo-face::before,
+    .logo-face::after {
+      content: "";
+      position: absolute;
+      background: #f7f7ff;
+    }
+
+    .logo-face::before {
+      /* eyes */
+      width: 6px;
+      height: 2px;
+      border-radius: 999px;
+      top: 45%;
+      left: 23%;
+      box-shadow: 9px 0 0 #f7f7ff;
+    }
+
+    .logo-face::after {
+      /* smirk */
+      width: 9px;
+      height: 3px;
+      border-radius: 999px;
+      border-bottom: 2px solid #f4c95d;
+      border-left: 2px solid transparent;
+      border-right: 2px solid transparent;
+      bottom: 26%;
+      left: 45%;
+      transform: translateX(-50%) rotate(-6deg);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-main);
+    }
+
+    .ticker {
+      font-size: 11px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(244,201,93,0.4);
+      background: rgba(5,5,9,0.7);
+      color: var(--accent-gold);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      font-size: 11px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      background: transparent;
+      transition: border-color var(--transition-fast), color var(--transition-fast),
+        background var(--transition-fast), transform var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .nav-link:hover {
+      border-color: rgba(244,201,93,0.5);
+      color: var(--accent-gold);
+      background: rgba(5,5,9,0.7);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      background: linear-gradient(120deg, #f4c95d, #ff476f);
+      color: #050509;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 11px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.8), 0 10px 24px rgba(0,0,0,0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        filter var(--transition-fast);
+      backdrop-filter: blur(6px);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.8), 0 16px 32px rgba(0,0,0,0.95);
+    }
+
+    .nav-cta span {
+      font-size: 13px;
+    }
+
+    .nav-cta-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #050509;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 840px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    .hero-card {
+      background: rgba(5,5,9,0.92);
+      border-radius: 24px;
+      border: 1px solid var(--border-soft);
+      padding: 18px 18px 18px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(244,201,93,0.6);
+      background: radial-gradient(circle at 0 0, rgba(244,201,93,0.18), rgba(5,5,9,0.85));
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 12px;
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f4c95d, #ff476f);
+      box-shadow: 0 0 12px rgba(244,201,93,0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 3.3vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .hero-title-accent {
+      background: linear-gradient(120deg, #f4c95d, #ff476f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 430px;
+      margin-bottom: 16px;
+    }
+
+    .hero-subtitle strong {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .hero-cta-main {
+      background: linear-gradient(120deg, #1ed760, #f4c95d);
+      color: #050509;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 13px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        filter var(--transition-fast);
+    }
+
+    .hero-cta-main:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.95);
+    }
+
+    .hero-cta-secondary {
+      padding: 9px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      font-size: 13px;
+      background: rgba(8,8,18,0.8);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: border-color var(--transition-fast), color var(--transition-fast),
+        background var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .hero-cta-secondary:hover {
+      border-color: rgba(244,201,93,0.5);
+      color: var(--accent-gold);
+      background: rgba(5,5,9,0.95);
+      transform: translateY(-1px);
+    }
+
+    .hero-cta-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 0, #f4c95d, #050509);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .pill-meta {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px dashed rgba(255,255,255,0.1);
+      font-size: 11px;
+      color: var(--text-muted);
+      background: rgba(10,10,20,0.8);
+    }
+
+    .pill-meta strong {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .lore-card {
+      background: radial-gradient(circle at 0 0, rgba(123,92,255,0.14), rgba(5,5,9,0.95));
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      padding: 13px 13px 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lore-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .lore-text {
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .lore-text span {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .lore-watermark {
+      position: absolute;
+      right: -10px;
+      bottom: -22px;
+      font-size: 52px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.03);
+      transform: rotate(-12deg);
+      pointer-events: none;
+    }
+
+    .meme-card {
+      background: radial-gradient(circle at 0 0, rgba(244,201,93,0.12), rgba(5,5,9,0.98));
+      border-radius: 24px;
+      border: 1px solid rgba(244,201,93,0.35);
+      padding: 16px 16px 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .meme-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .meme-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(5,5,9,0.9);
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(244,201,93,0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .meme-tag-chip {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      background: rgba(5,5,9,0.92);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #f4c95d;
+    }
+
+    .meme-price-pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(5,5,9,0.6);
+      background: rgba(5,5,9,0.35);
+      color: #f4c95d;
+      font-size: 11px;
+    }
+
+    .meme-art-frame {
+      position: relative;
+      border-radius: 18px;
+      border: 1px solid rgba(5,5,9,0.6);
+      background: radial-gradient(circle at 20% 0, #2d243e, #050509);
+      padding: 12px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .meme-art-inner {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.04);
+      background: linear-gradient(135deg, #050509 0, #131320 30%, #050509 70%, #131320 100%);
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Placeholder “BlakJak Wojak” silhouette */
+    .blakjak-face {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 12px;
+      background: radial-gradient(circle at 50% 0, #26213a 0, #050509 55%);
+      overflow: hidden;
+    }
+
+    .blakjak-face::before {
+      content: "";
+      position: absolute;
+      width: 54%;
+      height: 72%;
+      border-radius: 60% 60% 40% 40%;
+      background: radial-gradient(circle at 30% 0, #2b2238, #080711);
+      border: 2px solid rgba(244,201,93,0.2);
+      left: 50%;
+      top: 52%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 18px 35px rgba(0,0,0,0.9);
+    }
+
+    .blakjak-face::after {
+      /* neck / shoulders */
+      content: "";
+      position: absolute;
+      width: 70%;
+      height: 35%;
+      border-radius: 45% 45% 10% 10%;
+      background: linear-gradient(180deg, #120f1c, #050509);
+      left: 50%;
+      bottom: -6%;
+      transform: translateX(-50%);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .face-detail-eyes,
+    .face-detail-mouth,
+    .face-detail-brow {
+      position: absolute;
+      z-index: 2;
+    }
+
+    .face-detail-eyes {
+      width: 38%;
+      height: 10%;
+      top: 39%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .eye {
+      width: 42%;
+      height: 52%;
+      border-radius: 999px;
+      background: #f7f7ff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .eye::before {
+      content: "";
+      position: absolute;
+      width: 60%;
+      height: 60%;
+      background: #050509;
+      border-radius: 50%;
+      top: 40%;
+      left: 42%;
+      transform: translate(-50%, -50%);
+    }
+
+    .eye::after {
+      /* lid for slightly tired/sarcastic vibe */
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 52%;
+      background: linear-gradient(180deg, #2b2238, transparent);
+      top: -8%;
+      left: 0;
+      border-radius: 999px;
+    }
+
+    .face-detail-brow {
+      width: 46%;
+      height: 5%;
+      top: 35%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .brow {
+      width: 40%;
+      height: 100%;
+      border-radius: 999px;
+      border-top: 2px solid #f4c95d;
+      border-left: 2px solid transparent;
+      border-right: 2px solid transparent;
+      transform-origin: center;
+    }
+
+    .brow.left {
+      transform: rotate(-12deg) translateY(2px);
+    }
+
+    .brow.right {
+      transform: rotate(6deg) translateY(3px);
+    }
+
+    .face-detail-mouth {
+      width: 30%;
+      height: 12%;
+      top: 56%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      border-bottom: 3px solid #1ed760;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+      transform-origin: center;
+    }
+
+    .card-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-caption span strong {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    /* Sections below hero */
+
+    .sections-grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 840px) {
+      .sections-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .section-card {
+      background: rgba(5,5,9,0.96);
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      padding: 14px 15px 14px;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.7);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .section-tag {
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .section-body {
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .bullet-list {
+      list-style: none;
+      margin-top: 8px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .bullet-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f4c95d, #ff476f);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .roadmap-grid {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .roadmap-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .roadmap-step {
+      background: radial-gradient(circle at 0 0, rgba(244,201,93,0.08), rgba(5,5,9,0.95));
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 8px 9px;
+    }
+
+    .roadmap-step-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-gold);
+      margin-bottom: 4px;
+    }
+
+    .roadmap-step-body {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .tokenomics-grid {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .tokenomics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .token-box {
+      background: radial-gradient(circle at 0 0, rgba(123,92,255,0.14), rgba(5,5,9,0.96));
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 8px 9px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .token-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-gold);
+      margin-bottom: 2px;
+    }
+
+    .token-value {
+      font-size: 13px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .how-to-grid {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .how-to-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .how-step {
+      background: radial-gradient(circle at 0 0, rgba(30,215,96,0.12), rgba(5,5,9,0.96));
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 8px 9px;
+    }
+
+    .how-step-num {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(30,215,96,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--accent-green);
+      margin-bottom: 4px;
+    }
+
+    .how-step-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .how-step-text {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    footer {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .footer-left span {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .footer-link {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(5,5,9,0.8);
+      color: var(--text-muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      transition: border-color var(--transition-fast), color var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    .footer-link:hover {
+      border-color: rgba(244,201,93,0.5);
+      color: var(--accent-gold);
+      background: rgba(5,5,9,0.98);
+    }
+
+    /* Small scroll-to-section behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <div class="site-frame">
+    <div class="site-inner">
+      <header>
+        <div class="brand">
+          <div class="logo-pill">
+            <div class="logo-face"></div>
+          </div>
+          <div class="brand-text">
+            <div class="brand-name">BlakJak</div>
+            <div class="ticker">$BLAKJAK</div>
+          </div>
+        </div>
+        <nav>
+          <a class="nav-link" href="#lore">Lore</a>
+          <a class="nav-link" href="#how-to-buy">How to buy</a>
+          <a class="nav-link" href="#tokenomics">Tokenomics</a>
+          <a class="nav-link" href="#roadmap">Roadmap</a>
+          <a class="nav-cta" href="#socials">
+            <span>Join the table</span>
+            <div class="nav-cta-dot"></div>
+          </a>
+        </nav>
+      </header>
+
+      <main>
+        <!-- Left: hero + lore -->
+        <section class="hero-card">
+          <div class="hero-pill">
+            <div class="hero-pill-dot"></div>
+            The unbothered cousin of Wojak
+          </div>
+          <h1 class="hero-title">
+            When the market looks rigged,<br />
+            <span class="hero-title-accent">BlakJak deals himself in.</span>
+          </h1>
+          <p class="hero-subtitle">
+            <strong>BlakJak</strong> is Wojak’s darker, richer cousin — the one who stopped crying at the charts and started
+            <strong>counting the profits</strong>. Same memes, less coping, more winning.
+          </p>
+
+          <div class="hero-actions">
+            <!-- TODO: replace with real buy link -->
+            <a class="hero-cta-main" href="#how-to-buy">
+              Buy $BLAKJAK
+              <span style="font-size: 16px;">♠</span>
+            </a>
+            <!-- TODO: replace with real chart link -->
+            <a class="hero-cta-secondary" href="https://dexscreener.com" target="_blank" rel="noopener noreferrer">
+              <div class="hero-cta-icon">📈</div>
+              View chart
+            </a>
+          </div>
+
+          <div class="hero-meta-row">
+            <div class="pill-meta">
+              <strong>Contract:</strong> 0xBlakJak... (TBA)
+            </div>
+            <div class="pill-meta">
+              <strong>Chain:</strong> Ethereum / Solana / BSC (pick one)
+            </div>
+          </div>
+
+          <div id="lore" class="lore-card">
+            <div class="lore-title">Lore</div>
+            <p class="lore-text">
+              Wojak kept drawing red candles. BlakJak kept drawing <span>new entries</span>. When everyone else blamed
+              the market, he stacked cash, turned the cope into comedy, and treated every rug as
+              <span>research &amp; development</span>. Now he’s here as $BLAKJAK — the meme for people who laugh at the pain
+              and still end up in profit.
+            </p>
+            <div class="lore-watermark">blakjak</div>
+          </div>
+        </section>
+
+        <!-- Right: meme / character card -->
+        <section class="meme-card">
+          <div class="meme-header">
+            <div class="meme-tag">
+              <span class="meme-tag-chip">♠</span>
+              BlakJak mode
+            </div>
+            <div class="meme-price-pill">
+              PnL: +∞ IQ, +???x
+            </div>
+          </div>
+          <div class="meme-art-frame">
+            <div class="meme-art-inner">
+              <div class="blakjak-face">
+                <div class="face-detail-brow">
+                  <div class="brow left"></div>
+                  <div class="brow right"></div>
+                </div>
+                <div class="face-detail-eyes">
+                  <div class="eye"></div>
+                  <div class="eye"></div>
+                </div>
+                <div class="face-detail-mouth"></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-caption">
+            <span><strong>Expression:</strong> “I bought the dip on purpose.”</span>
+            <span><strong>Strategy:</strong> Plays the game, counts the odds, never blames the dealer.</span>
+          </div>
+        </section>
+      </main>
+
+      <!-- Sections below -->
+      <div class="sections-grid">
+        <!-- Left column: How to buy + disclaimers -->
+        <section id="how-to-buy" class="section-card">
+          <div class="section-header">
+            <h2 class="section-title">How to buy $BLAKJAK</h2>
+            <div class="section-tag">First time? Read this.</div>
+          </div>
+          <div class="section-body">
+            <p>
+              You don’t have to be a degen to sit at the table. Follow these steps and get your first stack of $BLAKJAK.
+            </p>
+            <div class="how-to-grid">
+              <div class="how-step">
+                <div class="how-step-num">1</div>
+                <div class="how-step-title">Create a wallet</div>
+                <div class="how-step-text">
+                  Download a crypto wallet (like MetaMask, Phantom, or Trust Wallet) and safely back up your seed phrase.
+                </div>
+              </div>
+              <div class="how-step">
+                <div class="how-step-num">2</div>
+                <div class="how-step-title">Fund it</div>
+                <div class="how-step-text">
+                  Buy the chain’s native token on an exchange and send it to your wallet address.
+                </div>
+              </div>
+              <div class="how-step">
+                <div class="how-step-num">3</div>
+                <div class="how-step-title">Connect &amp; swap</div>
+                <div class="how-step-text">
+                  Go to your chosen DEX, connect your wallet, paste the $BLAKJAK contract, and swap.
+                </div>
+              </div>
+            </div>
+            <ul class="bullet-list" style="margin-top:10px;">
+              <li class="bullet-item">
+                <div class="bullet-dot"></div>
+                <div>
+                  <strong>Not financial advice:</strong>
+                  Only play with what you can afford to lose. Even the best players bust if they go all in blind.
+                </div>
+              </li>
+              <li class="bullet-item">
+                <div class="bullet-dot"></div>
+                <div>
+                  <strong>DYOR always:</strong>
+                  Double-check contract addresses, links, and communities. If it feels off, fold the hand.
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Right column: Tokenomics -->
+        <section id="tokenomics" class="section-card">
+          <div class="section-header">
+            <h2 class="section-title">Tokenomics</h2>
+            <div class="section-tag">$BLAKJAK supply &amp; flow</div>
+          </div>
+          <div class="section-body">
+            <p>
+              Simple, transparent, and built so the memes can breathe. No casino tricks — just chips on the table.
+            </p>
+            <div class="tokenomics-grid">
+              <div class="token-box">
+                <div class="token-label">Total supply</div>
+                <div class="token-value">1,000,000,000</div>
+                <div>Fixed supply. No hidden mints, no surprise extra decks.</div>
+              </div>
+              <div class="token-box">
+                <div class="token-label">Tax</div>
+                <div class="token-value">0% / 0%</div>
+                <div>No in / out tax. You win or lose on the trade, not the fee.</div>
+              </div>
+              <div class="token-box">
+                <div class="token-label">Liquidity</div>
+                <div class="token-value">TBA</div>
+                <div>Initial liquidity locked or burned. House can’t run off with the pot.</div>
+              </div>
+              <div class="token-box">
+                <div class="token-label">Community</div>
+                <div class="token-value">XX%</div>
+                <div>Reserved for events, incentives, and meme missions.</div>
+              </div>
+              <div class="token-box">
+                <div class="token-label">Team</div>
+                <div class="token-value">XX%</div>
+                <div>Vested allocation. Builders eat last, or never — your call.</div>
+              </div>
+              <div class="token-box">
+                <div class="token-label">CEX / future</div>
+                <div class="token-value">XX%</div>
+                <div>Listings, partnerships, and whatever BlakJak decides to flip next.</div>
+              </div>
+            </div>
+            <ul class="bullet-list" style="margin-top:10px;">
+              <li class="bullet-item">
+                <div class="bullet-dot"></div>
+                <div>
+                  Exact numbers, chain, and contract details will be published before launch. Don’t ape on placeholders.
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Left column: Roadmap -->
+        <section id="roadmap" class="section-card">
+          <div class="section-header">
+            <h2 class="section-title">Roadmap</h2>
+            <div class="section-tag">We play in phases</div>
+          </div>
+          <div class="section-body">
+            <p>
+              This isn’t a whitepaper cult. It’s a meme project with a plan — and the plan is to outwork the joke.
+            </p>
+            <div class="roadmap-grid">
+              <div class="roadmap-step">
+                <div class="roadmap-step-label">Phase I · Shuffle</div>
+                <div class="roadmap-step-body">
+                  Launch $BLAKJAK, lock liquidity, deploy website, meme assets, and kick off the first wave of card table lore.
+                </div>
+              </div>
+              <div class="roadmap-step">
+                <div class="roadmap-step-label">Phase II · First hand</div>
+                <div class="roadmap-step-body">
+                  Grow the community, run contests, sticker drops, and partnerships with other meme projects that “get the joke.”
+                </div>
+              </div>
+              <div class="roadmap-step">
+                <div class="roadmap-step-label">Phase III · Full table</div>
+                <div class="roadmap-step-body">
+                  DEX / CEX listings, bigger collabs, live streams, and community-led initiatives. Let BlakJak sit with the whales.
+                </div>
+              </div>
+              <div class="roadmap-step">
+                <div class="roadmap-step-label">Phase IV · House rules</div>
+                <div class="roadmap-step-body">
+                  Explore utility: on-chain games, NFT drops, or whatever the community votes in. If it’s fun, it’s on the table.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right column: Socials -->
+        <section id="socials" class="section-card">
+          <div class="section-header">
+            <h2 class="section-title">Socials</h2>
+            <div class="section-tag">Don’t play alone</div>
+          </div>
+          <div class="section-body">
+            <p>
+              The real alpha isn’t the chart — it’s the people watching it with you. Pull up a chair.
+            </p>
+            <ul class="bullet-list">
+              <li class="bullet-item">
+                <div class="bullet-dot"></div>
+                <div>
+                  <strong>Telegram:</strong> t.me/BlakJak (TBA)
+                </div>
+              </li>
+              <li class="bullet-item">
+                <div class="bullet-dot"></div>
+                <div>
+                  <strong>X (Twitter):</strong> x.com/BlakJak (TBA)
+                </div>
+              </li>
+              <li class="bullet-item">
+                <div class="bullet-dot"></div>
+                <div>
+                  <strong>DexTools / DexScreener:</strong> Links will go live after launch.
+                </div>
+              </li>
+            </ul>
+            <ul class="bullet-list" style="margin-top: 10px;">
+              <li class="bullet-item">
+                <div class="bullet-dot"></div>
+                <div>
+                  BlakJak’s humor is dark, but the project stays respectful. No cheap shots — just memes about surviving this market.
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <footer>
+        <div class="footer-left">
+          <span>$BLAKJAK</span> is a meme coin with no intrinsic value or expectation of profit. This is entertainment, not a casino license.
+        </div>
+        <div class="footer-links">
+          <a class="footer-link" href="#lore">Lore</a>
+          <a class="footer-link" href="#how-to-buy">How to buy</a>
+          <a class="footer-link" href="#tokenomics">Tokenomics</a>
+          <a class="footer-link" href="#roadmap">Roadmap</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
