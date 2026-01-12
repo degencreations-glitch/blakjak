@@ -80,6 +80,7 @@
       display: block;
     }
 
+    /* DESKTOP BUTTON POSITIONING */
     .link-buttons {
       position: absolute;
       top: 42%;
@@ -116,16 +117,24 @@
       margin-top: 20px;
     }
 
+    /* 📱 MOBILE-ONLY ADJUSTMENT */
     @media (max-width: 768px) {
       .hero-image {
         width: 90%;
         height: auto;
       }
 
+      /* Move buttons to far left on mobile */
       .link-buttons {
-        top: 47%;
-        left: 33%;
-        transform: translate(-50%, -50%);
+        top: 10%;
+        left: 5%;
+        transform: none;
+        align-items: flex-start;
+      }
+
+      .link-buttons a {
+        font-size: 12px;
+        padding: 6px 10px;
       }
 
       section p {
